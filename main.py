@@ -1,14 +1,17 @@
-from openai import AzureOpenAI
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 
 load_dotenv()
-client = AzureOpenAI(
+
+
+client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    api_version="2025-09-15",
-    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+    base_url=f"{os.getenv('AZURE_OPENAI_ENDPOINT').rstrip('/')}/openai/v1/",
 )
 
-DEPLOYMENT = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME", "gpt-5-codex")      # alias del deployment
-resp = client.responses.create(model=DEPLOYMENT, input="Return exactly: OK")
+resp = client.responses.create(
+    model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
+    input="Solamente di OK, esto es una prueba",
+)
 print(resp.output_text)
