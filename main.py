@@ -6,8 +6,8 @@ load_dotenv()
 
 
 client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url=f"{os.getenv('AZURE_OPENAI_ENDPOINT').rstrip('/')}/openai/v1/",
+    api_key=os.getenv("AZURE_API_KEY"),
+    base_url=f"{os.getenv('AZURE_API_BASE').rstrip('/')}/openai/v1/",
 )
 
 resp = client.responses.create(
