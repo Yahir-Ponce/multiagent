@@ -12,6 +12,6 @@ client = OpenAI(
 
 resp = client.responses.create(
     model=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
-    input="Solamente di OK, esto es una prueba",
+    input="Solamente di: ""OK, esto es una prueba""",
 )
 print(resp.output_text)
