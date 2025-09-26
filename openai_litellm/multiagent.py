@@ -16,7 +16,7 @@ models = {
     "gpt-o1": "o1",
     "gpt-o3": "o3-mini",
     "gpt-o4-mini": "o4-mini",
-    "gpt-5": "gpt-5-chat"
+    "gpt-5": "gpt-5"
 }
 
 @function_tool

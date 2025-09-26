@@ -16,7 +16,7 @@ CLIENT = OpenAI(
 # --- 1) Texto simple ---
 async def text_demo():
     resp = CLIENT.responses.create(
-        model=MODEL,
+        model="gpt-4.1",
         input='Solamente di: "OK, esto es una prueba"',
     )
     print("\n[Texto simple]")
@@ -26,7 +26,7 @@ async def text_demo():
 # --- 2) Visión por URL ---
 async def vision_demo():
     resp = CLIENT.responses.create(
-        model=MODEL,
+        model="gpt-5",
         input=[{
             "role": "user",
             "content": [
@@ -41,16 +41,16 @@ async def vision_demo():
 
 # --- 3) Streaming ---
 async def stream_demo():
-    stream = CLIENT.responses.stream(
+    stream = CLIENT.responses.create(
         model=MODEL,
-        input=[{"role": "user", "content": "Holaaaaa"}],
+        input=[{"role": "user", "content": "Que es RAG ???"}],
+        stream=True,
     )
     print("\n[Streaming]")
     for event in stream:
         if event.type == "response.output_text.delta":
             print(event.delta, end="", flush=True)
             time.sleep(0.03)
-    stream.close()
 
 
 if __name__ == "__main__":
